@@ -1,18 +1,19 @@
-require_relative 'knight'
 require_relative 'algorithm'
+require_relative 'knight'
+
 
 class Board
-  attr_accessor :board
+  attr_accessor :board, :space
 
   def initialize
     @board = self.make_board
   end
 
   def make_board
-    arr1 = Array.new(64) { Array.new(2) }
+    arr = Array.new(64) { Array.new(2) }
     i = 0
     j = 0
-    arr1.each do |sub_array|
+    arr.each do |sub_array|
       sub_array[0] = i
       sub_array[1] = j
       j += 1
@@ -21,8 +22,12 @@ class Board
         i += 1
       end
     end
-    arr1
+    arr
   end
 
-#class end don't delete dummy
+  def knight_location(space)
+    @space = space
+  end
+
+# class end don't delete dummy
 end

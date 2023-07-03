@@ -3,7 +3,7 @@ require_relative 'knight'
 
 
 class Board
-  attr_accessor :board, :space
+  attr_accessor :board, :knight
 
   def initialize
     @board = self.make_board
@@ -25,8 +25,8 @@ class Board
     arr
   end
 
-  def knight_location(space)
-    @space = space
+  def knight_location(knight)
+    @knight = knight
   end
 
 # class end don't delete dummy

@@ -2,7 +2,7 @@ require_relative 'board'
 require_relative 'knight'
 
 board = Board.new
-knight = Knight.new(board.board[15])
+knight = Knight.new(board.board[24])
 
 knight.root
 knight.pretty_print

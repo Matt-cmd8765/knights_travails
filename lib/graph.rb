@@ -1,14 +1,13 @@
-require_relative 'graph'
+class GraphNode
 
-class Knight
-  attr_accessor :graph, :location
+  attr_accessor :value, :neighbors
 
-  def initialize(location)
-    @location = location
+  def initialize(value)
+    @value = value
   end
 
-  def change_location(location)
-    @location = location
+  def add_edge(neighbor)
+    @neighbors = neighbor
   end
 
   def possible_moves
@@ -16,22 +15,15 @@ class Knight
     i = 0
     base_move_array.map! do |move|
       move.map do |num|
-        new_num = num + @location[i]
-        i += 1
+        new_num = num + @value[i]
         i = 0 if i == 2
         new_num
       end
     end
     # insert current location into middle of array as root node. 
     new_arr = remove_off_board_values(base_move_array)
-    new_arr.map! do |x|
-      nod = GraphNode.new(x)
-      nod.possible_moves
-      nod
-    end
+    @neighbors = new_arr
   end
-
-  private
 
   def remove_off_board_values(array)
     array.map! do |move|
@@ -47,5 +39,18 @@ class Knight
     new_arr
   end
 
-# class end don't delete
+end
+
+class Graph
+
+  attr_accessor :root, :moves
+
+  def initialize(location)
+    @root = GraphNode.new(location)
+  end
+
+  def add_edge(next_move)
+    @moves = GraphNode.new(next_move)
+  end
+
 end

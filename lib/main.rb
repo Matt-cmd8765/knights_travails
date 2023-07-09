@@ -1,28 +1,18 @@
 require_relative 'board'
 require_relative 'knight'
 
+def add_edge_to_neighbors(array)
+  array.map! do |move|
+    node = GraphNode.new(move)
+    node.possible_moves
+  end
+  array
+end
+
 board = Board.new
-knight = Knight.new(board.board[24])
+knight = Knight.new([2,6])
+graph = Graph.new(knight.location)
+graph.root.add_edge(knight.possible_moves)
 
-knight.root
-knight.pretty_print
-# arr = board.knight.location
-# arr = [2,5]
-
-# move_array = [[1,2],[2,1],[1,-2],[2,-1],[-2,-1],[-1,-2],[-2,1],[-1,2]]
-# i = 0
-# move_array.map! do |move|
-#   move.map do |num|
-#     new_num = num + arr[i]
-#     i += 1
-#     if i == 2
-#       i = 0
-#     end
-#     new_num
-#   end
-# end
-
-# move_array.insert(4,arr)
-
-# p move_array
+p graph
 

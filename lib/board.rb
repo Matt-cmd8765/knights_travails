@@ -1,9 +1,8 @@
-require_relative 'algorithm'
 require_relative 'knight'
 
 
 class Board
-  attr_accessor :board, :knight
+  attr_accessor :board
 
   def initialize
     @board = self.make_board
@@ -22,11 +21,17 @@ class Board
         i += 1
       end
     end
-    arr
+    make_hash_board(arr)
   end
 
-  def knight_location(knight)
-    @knight = knight
+  def make_hash_board(arr)
+    hash = {}
+    arr.each { |num| hash[num] = nil }
+    hash
+  end
+
+  def put_piece(space, piece)
+    @board[space] = piece
   end
 
 # class end don't delete dummy

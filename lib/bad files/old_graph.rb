@@ -1,13 +1,14 @@
-class GraphNode
+class Vertex
 
   attr_accessor :value, :neighbors
 
   def initialize(value)
     @value = value
+    @neighbors = []
   end
 
   def add_edge(neighbor)
-    @neighbors = neighbor
+    neighbor.each {|move| @neighbors << Vertex.new(move)}
   end
 
   def possible_moves
@@ -20,9 +21,8 @@ class GraphNode
         new_num
       end
     end
-    # insert current location into middle of array as root node. 
     new_arr = remove_off_board_values(base_move_array)
-    @neighbors = new_arr
+    new_arr
   end
 
   def remove_off_board_values(array)
@@ -43,14 +43,14 @@ end
 
 class Graph
 
-  attr_accessor :root, :moves
+  attr_accessor :vertices
 
-  def initialize(location)
-    @root = GraphNode.new(location)
+  def initialize
+    @vertices = []
   end
 
-  def add_edge(next_move)
-    @moves = GraphNode.new(next_move)
+  def add_vertex(next_move)
+    @vertices = Vertex.new(next_move)
   end
 
 end

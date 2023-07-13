@@ -1,12 +1,16 @@
-require_relative 'knight'
-
-
 class Board
   attr_accessor :board
 
   def initialize
     @board = self.make_board
   end
+
+  def add_edge(node_a, node_b)
+    node_a.children << node_b
+    node_b.children << node_a
+  end
+
+  private
 
   def make_board
     arr = Array.new(64) { Array.new(2) }
@@ -28,10 +32,6 @@ class Board
     hash = {}
     arr.each { |num| hash[num] = nil }
     hash
-  end
-
-  def put_piece(space, piece)
-    @board[space] = piece
   end
 
 # class end don't delete dummy

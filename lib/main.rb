@@ -1,18 +1,35 @@
-require_relative 'board'
 require_relative 'knight'
+require_relative 'board'
+require_relative 'bfs'
+board = Board.new
+space = board.board
 
-def add_edge_to_neighbors(array)
-  array.map! do |move|
-    node = GraphNode.new(move)
-    node.possible_moves
-  end
-  array
+board.board.keys().each do |key|
+  knight = Knight.new(key)
+  knight.possible_moves
+  board.board[key] = knight
 end
 
-board = Board.new
-knight = Knight.new([2,6])
-graph = Graph.new(knight.location)
-graph.root.add_edge(knight.possible_moves)
+#board.board[[7,1]]
+start = space[[2,6]]
+moves = start.possible_moves
+moves.each do |move|
+  board.add_edge(start, space[move])
+end
 
-p graph
+# start.children.each do |child|
+#   space[child.location]
+#   start = space[child.location]
+#   moves = start.possible_moves
+#   moves.each do |move|
+#     board.add_edge(start, space[move])
+#   end
+# end
+
+
+bfs = BreadthFirstSearch.new(start)
+p bfs.shortest_path_to(space[[0,5]])
+
+
+
 

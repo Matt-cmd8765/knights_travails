@@ -1,14 +1,11 @@
-require_relative 'graph'
+require 'set'
 
 class Knight
-  attr_accessor :graph, :location
+  attr_accessor :children, :location
 
   def initialize(location)
     @location = location
-  end
-
-  def change_location(location)
-    @location = location
+    @children = Set.new
   end
 
   def possible_moves
@@ -22,13 +19,8 @@ class Knight
         new_num
       end
     end
-    # insert current location into middle of array as root node. 
     new_arr = remove_off_board_values(base_move_array)
-    new_arr.map! do |x|
-      nod = GraphNode.new(x)
-      nod.possible_moves
-      nod
-    end
+    new_arr
   end
 
   private

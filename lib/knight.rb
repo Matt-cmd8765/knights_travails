@@ -1,11 +1,12 @@
 require 'set'
 
 class Knight
-  attr_accessor :children, :location
+  attr_accessor :children, :location, :parent
 
-  def initialize(location)
+  def initialize(location, parent = nil)
     @location = location
-    @children = Set.new
+    @children = []
+    @parent = parent
   end
 
   def possible_moves

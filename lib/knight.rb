@@ -1,5 +1,3 @@
-require 'set'
-
 class Knight
   attr_accessor :children, :location, :parent
 

@@ -43,5 +43,4 @@ class Board
     history.reverse.each { |move| puts move.to_s }
   end
 
-# class end don't delete dummy
 end
